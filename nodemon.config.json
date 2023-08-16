@@ -1,0 +1,12 @@
+{
+    "ignore": [
+        ".git",
+        "node_modules/**",
+        "src/client/**",
+        "public/**"
+    ],
+    "watch": ["/"],
+    "ext": "go",
+    "exec": "go run pancake",
+    "signal": "SIGTERM"
+}
