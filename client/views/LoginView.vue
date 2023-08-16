@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center w-full h-full">
+    <div class="flex items-center w-full h-full bg-cyan-950">
         <Card class="w-[390px] h-[450px] flex flex-col mx-auto p-5">
             <header class="h-[5.625rem] flex items-center">
                 <span class="text-3xl font-semibold text-slate-700 mx-auto">登录账号</span>
@@ -30,16 +30,12 @@ export default {
     data() {
         return {
             handleLogin() {
-                window.location.href = "/home";
+                window.location.href = "/app";
             },
             handleRegister() {
-                window.location.href = "/home";
+                window.location.href = "/app";
             }
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>
