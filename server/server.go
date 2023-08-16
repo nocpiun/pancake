@@ -1,10 +1,10 @@
-package server
+package main
 
 import (
 	"fmt"
 	"net/http"
 	"os"
-	"pancake/src/server/routes"
+	"pancake/routes"
 	"strconv"
 )
 

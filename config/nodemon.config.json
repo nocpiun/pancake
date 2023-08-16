@@ -2,11 +2,11 @@
     "ignore": [
         ".git",
         "node_modules/**",
-        "src/client/**",
+        "client/**",
         "public/**"
     ],
     "watch": ["/"],
     "ext": "go",
-    "exec": "go run pancake",
+    "exec": "cd server && go run pancake",
     "signal": "SIGTERM"
 }

@@ -1,11 +1,8 @@
 package main
 
-import (
-	"fmt"
-	"pancake/src/server"
-)
+import "fmt"
 
 func main() {
 	fmt.Println("Server starting...")
-	server.Start()
+	Start()
 }
