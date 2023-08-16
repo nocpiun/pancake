@@ -1,6 +1,6 @@
 <template>
-    <div class="home">
-        <h1 class="text-3xl font-bold underline text-center">Pancake</h1>
+    <div>
+        <p>Homepage</p>
     </div>
 </template>
 
