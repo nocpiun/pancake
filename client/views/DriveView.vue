@@ -3,11 +3,17 @@
 </script>
 
 <template>
-    <div>
-        
-    </div>
+    <Page title="存储空间">
+
+    </Page>
 </template>
 
 <script lang="ts">
-export default {}
+import Page from "../components/Page.vue";
+
+export default {
+    components: {
+        Page
+    }
+}
 </script>

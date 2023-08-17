@@ -3,11 +3,17 @@
 </script>
 
 <template>
-    <div>
-        
-    </div>
+    <Page title="用户中心">
+
+    </Page>
 </template>
 
 <script lang="ts">
-export default {}
+import Page from "../components/Page.vue";
+
+export default {
+    components: {
+        Page
+    }
+}
 </script>
