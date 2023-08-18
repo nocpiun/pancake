@@ -27,7 +27,7 @@ function handleSubmit(): void {
     const passwordRepeat = passwordRepeatInput.value.input.value;
 
     if(password !== passwordRepeat) {
-        alert("重复密码时出错");
+        alert("两次输入的密码不一致");
         return;
     }
 

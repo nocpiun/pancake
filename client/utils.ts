@@ -11,4 +11,8 @@ export default class Utils {
 
         return "";
     }
+
+    public static setCookie(key: string, value: string): void {
+        document.cookie = key +"="+ value +";";
+    }
 }

@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 
-import Utils from "../utils";
-
-const token = Utils.getCookie("token");
-if(token === "") { // Hasn't logged in yet
+const _token = Utils.getCookie("token");
+if(_token === "") { // Hasn't logged in yet
     window.location.href = "/login";
 }
 </script>
@@ -34,7 +32,7 @@ if(token === "") { // Hasn't logged in yet
                     <NavButton text="设置" link="/app/settings"/>
                 </li>
                 <li>
-                    <NavButton text="用户" link="/app/user"/>
+                    <NavButton v-if="isFetched" :text="userInfo.name" link="/app/user" tooltip="用户中心"/>
                 </li>
             </ul>
         </nav>
@@ -44,11 +42,40 @@ if(token === "") { // Hasn't logged in yet
 </template>
 
 <script lang="ts">
+import axios, { AxiosResponse } from "axios";
+
 import NavButton from "../components/NavButton.vue";
+
+import Utils from "../utils";
+import { apiURL } from '../global';
+import { UserInfo } from "../types";
+
+const token = Utils.getCookie("token");
+
+interface UserInfoResponseData {
+    error: object | null
+    userInfo: UserInfo
+}
 
 export default {
     components: {
         NavButton
+    },
+    data() {
+        return {
+            isFetched: false,
+            userInfo: {
+                name: ""
+            }
+        }
+    },
+    created() {
+        axios.get<any, AxiosResponse<UserInfoResponseData>>(apiURL +"/getUserInfo?token="+ token).then((res) => {
+            this.userInfo = res.data.userInfo;
+            this.isFetched = true;
+        }).catch((err) => {
+            alert(err);
+        });
     }
 }
 </script>

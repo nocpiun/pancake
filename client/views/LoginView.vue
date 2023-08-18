@@ -44,7 +44,7 @@ function handleLogin(): void {
         }
 
         const token = res.data.token;
-        document.cookie = "token="+ token;
+        Utils.setCookie("token", encodeURIComponent(token));
 
         window.location.href = "/app";
     }).catch((err) => {
@@ -55,6 +55,12 @@ function handleLogin(): void {
 function handleRegister(): void {
     window.location.href = "/register";
 }
+
+document.body.addEventListener("keydown", (e) => {
+    if(e.key === "Enter") {
+        handleLogin();
+    }
+});
 </script>
 
 <template>

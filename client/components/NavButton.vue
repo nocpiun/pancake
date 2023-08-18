@@ -2,6 +2,7 @@
 const props = defineProps<{
     text: string
     link?: string
+    tooltip?: string
 }>();
 
 function handleClick(): void {
@@ -12,7 +13,7 @@ function handleClick(): void {
 </script>
 
 <template>
-    <button class="hover:text-gray-300 transition-colors" @click="handleClick()">{{ text }}</button>
+    <button class="hover:text-gray-300 transition-colors" :title="tooltip" @click="handleClick()">{{ text }}</button>
 </template>
 
 <script lang="ts">
