@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
+    class?: string
     text: string
     type: "primary" | "success" | "danger"
 }>();
@@ -17,11 +18,17 @@ function colorType(): string {
 </script>
 
 <template>
-    <button :class="'w-full h-[40px] border rounded transition-colors '+ colorType()">
+    <button :class="'h-[40px] px-3 border rounded transition-colors '+ colorType() + computedClass">
         {{ text }}
     </button>
 </template>
 
 <script lang="ts">
-export default {}
+export default {
+    computed: {
+        computedClass() {
+            return this.class;
+        }
+    }
+}
 </script>

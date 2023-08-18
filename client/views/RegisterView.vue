@@ -13,47 +13,52 @@ if(token !== "") {
 
 var usernameInput = ref<any>(null);
 var passwordInput = ref<any>(null);
+var passwordRepeatInput = ref<any>(null);
 
 interface ResponseData {
-    error: object | null
-    token: string
-    hasUser: boolean
-    pass: boolean
+    error: {
+        sqlMessage: string
+    } | null
 }
 
-function handleLogin(): void {
+function handleSubmit(): void {
     const name = usernameInput.value.input.value;
     const password = passwordInput.value.input.value;
+    const passwordRepeat = passwordRepeatInput.value.input.value;
 
-    if(name === "" || password === "") {
+    if(password !== passwordRepeat) {
+        alert("重复密码时出错");
         return;
     }
 
-    axios.post<any, AxiosResponse<ResponseData>>(apiURL +"/login", {
+    if(password.length < 6) {
+        alert("密码长度应不小于6");
+        return;
+    }
+
+    if(name === "" || password === "" || passwordRepeat === "") {
+        return;
+    }
+
+    axios.post<any, AxiosResponse<ResponseData>>(apiURL +"/registerUser", {
         name,
         password: md5(password)
     }).then((res) => {
-        if(!res.data.hasUser) {
-            alert("找不到此用户，请前往注册");
+        console.log(res.data);
+        if(res.data.error) {
+            alert("注册失败，ERROR: "+ res.data.error.sqlMessage);
             return;
         }
 
-        if(!res.data.pass) {
-            alert("用户名或密码错误");
-            return;
-        }
-
-        const token = res.data.token;
-        document.cookie = "token="+ token;
-
-        window.location.href = "/app";
+        alert("注册成功");
+        window.location.href = "/login";
     }).catch((err) => {
-        alert("登录失败，ERROR: "+ err);
+        alert("注册失败，ERROR: "+ err);
     });
 }
 
-function handleRegister(): void {
-    window.location.href = "/register";
+function handleLogin(): void {
+    window.location.href = "/login";
 }
 </script>
 
@@ -61,15 +66,18 @@ function handleRegister(): void {
     <div class="flex items-center w-full h-full bg-cyan-950">
         <Card class="w-[390px] h-[450px] flex flex-col mx-auto p-5">
             <header class="h-[5.625rem] flex items-center">
-                <span class="text-3xl font-semibold text-slate-700 mx-auto">登录账号</span>
+                <span class="text-3xl font-semibold text-slate-700 mx-auto">注册新账号</span>
             </header>
             <div class="flex-1 flex flex-col">
                 <InputBox label="用户名" ref="usernameInput"/>
                 <InputBox label="密码" safe ref="passwordInput"/>
+                <InputBox label="重复密码" safe ref="passwordRepeatInput"/>
             </div>
-            <div class="h-[6.225rem] flex flex-col justify-end space-y-4">
-                <Button class="w-full" text="登录" type="success" @click="handleLogin()"/>
-                <Button class="w-full" text="注册" type="primary" @click="handleRegister()"/>
+            <div class="h-[6.225rem] flex flex-col justify-end">
+                <div class="flex space-x-4">
+                    <Button class="flex-1 w-full" text="已有账号? 登录" type="primary" @click="handleLogin()"/>
+                    <Button class="flex-1 w-full" text="提交" type="success" @click="handleSubmit()"/>
+                </div>
             </div>
         </Card>
     </div>

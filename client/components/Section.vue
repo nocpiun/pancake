@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
     <section class="w-full flex flex-col">
-        <div class="flex justify-between items-end">
+        <div class="flex justify-between items-end mb-8">
             <h2 class="text-2xl font-light inline-block">{{ title }}</h2>
             <span class="text-base text-gray-500">{{ description }}</span>
         </div>

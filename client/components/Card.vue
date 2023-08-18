@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-    <div :class="'border rounded border-gray-300 bg-slate-100 shadow-lg '+ computedClass">
+    <div :class="'border rounded border-gray-300 bg-slate-50 shadow-lg '+ computedClass">
         <slot />
     </div>
 </template>

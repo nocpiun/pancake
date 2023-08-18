@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
+
+import Utils from "../utils";
+
+const token = Utils.getCookie("token");
+if(token === "") { // Hasn't logged in yet
+    window.location.href = "/login";
+}
 </script>
 
 <template>
