@@ -12,7 +12,7 @@ function colorType(): string {
         case "success":
             return "bg-green-600 border-green-800 text-white hover:bg-green-700 active:bg-green-800";
         case "danger":
-            return "";
+            return "bg-red-600 border-red-800 text-white hover:bg-red-700 active:bg-red-800";
     }
 }
 </script>

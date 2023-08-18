@@ -29,9 +29,6 @@ if(_token === "") { // Hasn't logged in yet
 
             <ul class="list-none flex space-x-7">
                 <li>
-                    <NavButton text="设置" link="/app/settings"/>
-                </li>
-                <li>
                     <NavButton v-if="isFetched" :text="userInfo.name" link="/app/user" tooltip="用户中心"/>
                 </li>
             </ul>

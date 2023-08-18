@@ -23,9 +23,6 @@ function handleWheel(e: WheelEvent) {
             @mousewheel="(e) => handleWheel(e)">
             <RecommendedItem name="TestFile"/>
             <RecommendedItem name="TestFile"/>
-            <RecommendedItem name="TestFile"/>
-            <RecommendedItem name="TestFile"/>
-            <RecommendedItem name="TestFile"/>
         </Section>
 
         <Section

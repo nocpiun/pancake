@@ -81,6 +81,11 @@ function handleSubmitNewPassword(): void {
         alert(err);
     });
 }
+
+function handleLogout(): void {
+    Utils.deleteCookie("token");
+    window.location.reload();
+}
 </script>
 
 <template>
@@ -94,6 +99,11 @@ function handleSubmitNewPassword(): void {
             <InputBox label="新密码" safe class="w-64 mr-3" ref="newPasswordInput"/>
             <InputBox label="重复新密码" safe class="w-64 mr-3 inline-block" ref="repeatPasswordInput"/>
             <Button text="确认" type="success" @click="handleSubmitNewPassword()"/>
+        </Section>
+
+        <Section title="危险操作" class="space-x-3">
+            <Button text="登出" type="primary" @click="handleLogout()"/>
+            <Button text="注销" type="danger"/>
         </Section>
     </Page>
 </template>

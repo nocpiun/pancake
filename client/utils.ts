@@ -15,4 +15,8 @@ export default class Utils {
     public static setCookie(key: string, value: string): void {
         document.cookie = key +"="+ value +";";
     }
+
+    public static deleteCookie(key: string): void {
+        document.cookie = key +"=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    }
 }
