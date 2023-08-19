@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-
-const _token = Utils.getCookie("token");
-if(_token === "") { // Hasn't logged in yet
-    window.location.href = "/login";
-}
 </script>
 
 <template>
@@ -45,13 +40,11 @@ import NavButton from "../components/NavButton.vue";
 
 import Utils from "../utils";
 import { apiURL } from '../global';
-import { UserInfo } from "../types";
+import { UserInfoResponseData } from "../types";
 
 const token = Utils.getCookie("token");
-
-interface UserInfoResponseData {
-    error: object | null
-    userInfo: UserInfo
+if(token === "") { // Hasn't logged in yet
+    window.location.href = "/login";
 }
 
 export default {

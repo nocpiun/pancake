@@ -51,16 +51,6 @@ function handleLogin(): void {
         alert("登录失败，ERROR: "+ err);
     });
 }
-
-function handleRegister(): void {
-    window.location.href = "/register";
-}
-
-document.body.addEventListener("keydown", (e) => {
-    if(e.key === "Enter") {
-        handleLogin();
-    }
-});
 </script>
 
 <template>
@@ -91,6 +81,11 @@ export default {
         Card,
         InputBox,
         Button
+    },
+    methods: {
+        handleRegister() {
+            window.location.href = "/register";
+        }
     }
 }
 </script>

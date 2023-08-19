@@ -81,15 +81,14 @@ function handleSubmitNewPassword(): void {
         alert(err);
     });
 }
-
-function handleLogout(): void {
-    Utils.deleteCookie("token");
-    window.location.reload();
-}
 </script>
 
 <template>
     <Page title="用户中心">
+        <Section title="存储令牌">
+            <code>{{ userInfo.storingToken }}</code>
+        </Section>
+
         <Section title="修改用户名">
             <InputBox label="新名称" class="w-64 mr-3 inline-block" ref="newNameInput"/>
             <Button text="确认" type="success" @click="handleSumbitNewName()"/>
@@ -103,16 +102,28 @@ function handleLogout(): void {
 
         <Section title="危险操作" class="space-x-3">
             <Button text="登出" type="primary" @click="handleLogout()"/>
-            <Button text="注销" type="danger"/>
+            <Button text="注销" type="danger" @click="handleUnregister()"/>
         </Section>
     </Page>
 </template>
 
 <script lang="ts">
+import axios, { AxiosResponse } from "axios";
+
 import Page from "../components/Page.vue";
 import Section from "../components/Section.vue";
 import InputBox from "../components/InputBox.vue";
 import Button from "../components/Button.vue";
+
+import { UserInfoResponseData } from "../types";
+import { apiURL } from "../global";
+
+const token = Utils.getCookie("token");
+
+interface UnregisterResponseData {
+    error: object | null
+    pass: boolean
+}
 
 export default {
     components: {
@@ -120,6 +131,48 @@ export default {
         Section,
         InputBox,
         Button
+    },
+    data() {
+        return {
+            userInfo: {
+                storingToken: ""
+            }
+        }
+    },
+    methods: {
+        handleLogout() {
+            Utils.deleteCookie("token");
+            window.location.href = "/login";
+        },
+
+        handleUnregister() {
+            var password = prompt("请输入密码以继续");
+            if(!password || password === "") return;
+            password = md5(password);
+
+            axios.post<any, AxiosResponse<UnregisterResponseData>>(apiURL +"/unregisterUser", {
+                token,
+                password
+            }).then((res) => {
+                if(!res.data.pass) {
+                    alert("注销失败，密码错误");
+                    return;
+                }
+
+                alert("注销成功");
+                Utils.deleteCookie("token");
+                window.location.href = "/login";
+            }).catch((err) => {
+                alert("注销失败，ERROR: "+ err);
+            });
+        }
+    },
+    created() {
+        axios.get<any, AxiosResponse<UserInfoResponseData>>(apiURL +"/getUserInfo?token="+ token).then((res) => {
+            this.userInfo = res.data.userInfo;
+        }).catch((err) => {
+            alert(err);
+        });
     }
 }
 </script>

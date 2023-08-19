@@ -56,10 +56,6 @@ function handleSubmit(): void {
         alert("注册失败，ERROR: "+ err);
     });
 }
-
-function handleLogin(): void {
-    window.location.href = "/login";
-}
 </script>
 
 <template>
@@ -93,6 +89,11 @@ export default {
         Card,
         InputBox,
         Button
+    },
+    methods: {
+        handleLogin() {
+            window.location.href = "/login";
+        }
     }
 }
 </script>
