@@ -29,7 +29,7 @@ if(_token === "") { // Hasn't logged in yet
 
             <ul class="list-none flex space-x-7">
                 <li>
-                    <NavButton v-if="isFetched" :text="userInfo.name" link="/app/user" tooltip="用户中心"/>
+                    <NavButton :text="userInfo.name" link="/app/user" tooltip="用户中心"/>
                 </li>
             </ul>
         </nav>
@@ -60,7 +60,6 @@ export default {
     },
     data() {
         return {
-            isFetched: false,
             userInfo: {
                 name: ""
             }
@@ -69,7 +68,6 @@ export default {
     created() {
         axios.get<any, AxiosResponse<UserInfoResponseData>>(apiURL +"/getUserInfo?token="+ token).then((res) => {
             this.userInfo = res.data.userInfo;
-            this.isFetched = true;
         }).catch((err) => {
             alert(err);
         });
