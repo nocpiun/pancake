@@ -75,7 +75,6 @@ import { DirectoryItemType } from "../types";
 
             <FilePond
                 name="file-upload"
-                acceptedFileTypes=""
                 label-idle="拖拽文件到此处上传..."
                 :max-files="5"
                 :allow-multiple="true"
