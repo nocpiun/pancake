@@ -24,6 +24,17 @@ main {
 	overflow-x: hidden;
 }
 
+/* Font */
+
+@font-face {
+    font-family: NotoSans-SC-Light;
+    src: url("./assets/NotoSansSC-Light.otf");
+}
+
+main * {
+    font-family: NotoSans-SC-Light, Roboto, Segoe UI, sans-serif;
+}
+
 /* Scrollbar */
 
 ::-webkit-scrollbar {

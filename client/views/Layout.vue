@@ -4,7 +4,7 @@ import { RouterView } from "vue-router";
 
 <template>
     <div>
-        <nav class="w-full px-60 py-3 bg-cyan-950 text-white shadow-lg flex justify-between sticky top-0">
+        <nav class="w-full px-60 py-3 backdrop-blur-xl text-slate-950 shadow-lg flex justify-between sticky top-0">
             <div class="flex space-x-7">
 
                 <h1 class="font-semibold text-lg hover:cursor-default">Pancake</h1>

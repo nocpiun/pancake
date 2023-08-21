@@ -13,7 +13,7 @@ function handleClick(): void {
 </script>
 
 <template>
-    <button class="hover:text-gray-300 transition-colors" :title="tooltip" @click="handleClick()">{{ text }}</button>
+    <button class="font-semibold align-middle hover:text-slate-600 transition-colors" :title="tooltip" @click="handleClick()">{{ text }}</button>
 </template>
 
 <script lang="ts">

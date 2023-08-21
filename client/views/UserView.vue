@@ -91,13 +91,13 @@ function handleSubmitNewPassword(): void {
 
         <Section title="修改用户名">
             <InputBox label="新名称" class="w-64 mr-3 inline-block" ref="newNameInput"/>
-            <Button text="确认" type="success" @click="handleSumbitNewName()"/>
+            <Button text="确认" type="primary" @click="handleSumbitNewName()"/>
         </Section>
 
         <Section title="修改密码">
             <InputBox label="新密码" safe class="w-64 mr-3" ref="newPasswordInput"/>
             <InputBox label="重复新密码" safe class="w-64 mr-3 inline-block" ref="repeatPasswordInput"/>
-            <Button text="确认" type="success" @click="handleSubmitNewPassword()"/>
+            <Button text="确认" type="primary" @click="handleSubmitNewPassword()"/>
         </Section>
 
         <Section title="危险操作" class="space-x-3">

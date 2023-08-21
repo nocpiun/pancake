@@ -11,8 +11,13 @@ defineExpose({
     dialog
 });
 
+const emit = defineEmits([
+    "close"
+]);
+
 function handleClose(): void {
     dialog.value?.close();
+    emit("close");
 }
 </script>
 
@@ -21,7 +26,7 @@ function handleClose(): void {
         <header class="h-20 p-7 pb-0">
             <h1 class="text-3xl font-semibold">{{ title }}</h1>
         </header>
-        <div class="flex-1 p-9 pt-3">
+        <div class="flex-1 p-9 pt-3 mb-5 overflow-x-auto">
             <slot />
         </div>
         <footer class="flex justify-end">
