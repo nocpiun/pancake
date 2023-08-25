@@ -22,12 +22,18 @@ const router = createRouter({
 					component: () => import("../views/ShareView.vue")
 				},
 				{
-					path: "drive",
-					component: () => import("../views/DriveView.vue")
-				},
-				{
 					path: "user",
 					component: () => import("../views/UserView.vue")
+				},
+				{
+					path: "file/:key",
+					name: "file",
+					component: () => import("../views/FileView.vue")
+				},
+				{
+					path: "shared/:key",
+					name: "shared-file",
+					component: () => import("../views/SharedFileView.vue")
 				}
 			]
 		},

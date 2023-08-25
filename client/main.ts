@@ -8,6 +8,8 @@ import "./style/index.css";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 import "@imengyu/vue3-context-menu/lib/vue3-context-menu.css";
+import "@vue-office/docx/lib/index.css";
+import "@vue-office/excel/lib/index.css";
 
 const app = createApp(App);
 

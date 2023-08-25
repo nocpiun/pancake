@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import { DirectoryItemType } from "../types";
-import { apiURL } from "../global";
 </script>
 
 <template>
     <Page title="共享">
         <Section title="已共享的文件">
+            <p class="mb-3">可将共享链接复制分享给别人使用，或右键文件项目以取消共享</p>
+
             <div class="w-full h-[550px] overflow-y-auto border rounded border-gray-300 flex flex-col overflow-x-hidden">
                 <DirectoryItem
                     v-for="(item, key) in sharedList"
                     :name="decodeURIComponent(item.dirPath).replaceAll('\\', '/')"
                     :type="DirectoryItemType.FILE"
-                    :time="apiURL +'/shared/'+ item.fileKey"
+                    :time="item.fileKey"
                     :sharing-mode="true"
                     :key="key"
                     @click="handleOpen(item)"
+                    @copy-link="handleCopyLink(item)"
                     @unshare="handleUnshare(item)"/>
             </div>
         </Section>
@@ -57,19 +59,23 @@ export default {
     },
     data() {
         return {
-            sharedList: [
-                {
-                    fileKey: "",
-                    ownerToken: "",
-                    path: "",
-                    dirPath: ""
-                }
-            ]
+            sharedList: []
         }
     },
     methods: {
         handleOpen(item: SharedItem) {
-            window.open(apiURL +"/shared/"+ item.fileKey);
+            window.location.href = "/app/shared/"+ item.fileKey;
+        },
+
+        async handleCopyLink(item: SharedItem) {
+            try {
+                await window.navigator.clipboard.writeText(
+                    `${window.location.protocol}://${window.location.host}/app/shared/${item.fileKey}`
+                );
+                alert("复制成功");
+            } catch (err) {
+                alert(err);
+            }
         },
 
         handleUnshare(item: SharedItem) {

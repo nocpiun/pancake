@@ -4,7 +4,7 @@ import { RouterView } from "vue-router";
 
 <template>
     <div>
-        <nav class="w-full px-60 py-3 backdrop-blur-xl text-slate-950 shadow-lg flex justify-between sticky top-0">
+        <nav class="w-full px-60 py-3 backdrop-blur-xl text-slate-950 shadow-lg flex justify-between sticky top-0 z-50">
             <div class="flex space-x-7">
 
                 <h1 class="font-semibold text-lg hover:cursor-default">Pancake</h1>
@@ -15,9 +15,6 @@ import { RouterView } from "vue-router";
                     </li>
                     <li>
                         <NavButton text="共享" link="/app/share"/>
-                    </li>
-                    <li>
-                        <NavButton text="存储空间" link="/app/drive"/>
                     </li>
                 </ul>
             </div>

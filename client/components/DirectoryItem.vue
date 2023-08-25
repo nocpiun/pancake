@@ -14,7 +14,7 @@ defineProps<{
         class="w-full px-4 py-3 border-b border-gray-300 flex transition-colors hover:cursor-pointer hover:bg-slate-100 active:bg-slate-200"
         @contextmenu="handleContextMenu($event)">
         <span class="w-5/12 pr-4 overflow-hidden text-ellipsis whitespace-nowrap">{{ name }}</span>
-        <span v-if="!sharingMode" class="grow font-light text-sm">{{ type === DirectoryItemType.FILE ? "文件" : "文件夹" }}</span>
+        <span class="grow font-light text-sm">{{ !sharingMode ? (type === DirectoryItemType.FILE ? "文件" : "文件夹") : "" }}</span>
         <span class="grow-0 text-gray-400">{{ time }}</span>
     </div>
 </template>
@@ -39,7 +39,7 @@ export default {
         handleContextMenu(e: MouseEvent) {
             e.preventDefault();
 
-            if(this.sharingMode) {
+            if(this.sharingMode) { // ShareView
                 this.$contextmenu({
                     theme: "mac",
                     x: e.x,
@@ -47,8 +47,15 @@ export default {
                     items: [
                         {
                             label: "打开",
+                            divided: "down",
                             onClick: () => {
                                 this.$emit("click");
+                            }
+                        },
+                        {
+                            label: "复制链接",
+                            onClick: () => {
+                                this.$emit("copy-link");
                             }
                         },
                         {

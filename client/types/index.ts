@@ -17,3 +17,13 @@ export interface DirectoryItemData {
     type: "directory" | "file"
     time: string
 }
+
+export interface FileResponseData {
+    error: object | null
+    fileName: string
+    fileOwner?: string
+    fileExt: string
+    mime: string
+    data: Buffer
+    size: number
+}

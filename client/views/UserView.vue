@@ -86,7 +86,7 @@ function handleSubmitNewPassword(): void {
 <template>
     <Page title="用户中心">
         <Section title="存储令牌">
-            <code>{{ userInfo.storingToken }}</code>
+            <code class="border rounded border-gray-300 px-3 py-2">{{ userInfo.storingToken }}</code>
         </Section>
 
         <Section title="修改用户名">

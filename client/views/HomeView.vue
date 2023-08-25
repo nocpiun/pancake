@@ -281,7 +281,7 @@ export default {
             }).then(async (res) => {
                 if(res.status === 404) return;
 
-                this.shareLink = apiURL +"/shared/"+ res.data.key;
+                this.shareLink = "/app/shared/"+ res.data.key;
             }).catch((err) => {
                 alert(err);
             });
@@ -317,7 +317,7 @@ export default {
 
                 shouldDownload
                 ? window.location.href = apiURL +"/file/"+ res.data.key +"?download=1"
-                : window.open(apiURL +"/file/"+ res.data.key, "about:blank");
+                : window.location.href = "/app/file/"+ res.data.key;
             }).catch((err) => {
                 alert(err);
             });
